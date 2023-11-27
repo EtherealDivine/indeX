@@ -10,25 +10,18 @@ This tool requires you to manually acquire your preferred ASN and fill in the in
 
 * my nmap scan took a long time so i used an asn that has only one ip range. but i'd like to see the results for an asn that has lots of IP ranges
 -------------------------------------------------------------------
-User Input (ASN, Files) ---> whois/radb (ASN Info) ---> Output (Files)
-                           |
-                           v
-                    IP Ranges Extraction
-                           |
-                           v
-                   Nmap Scan -sn (Live Hosts)
-                           |
-                           v
-        Nmap Scan -sS (Open Ports) on Live Hosts
-                           |
-                           v
-                   Final Nmap Scan Results
+* User Input (ASN)
+* whois/radb (ASN Info)
+* IP Ranges Extraction
+* Nmap Scan -sn (Live Hosts)
+* Nmap Scan -sS (Open Ports) on Live Hosts
+* Final Nmap Scan Results
 -------------------------------------------------------------------
 
 ## indeX2
 ### How it works
 * usage: bash index2.sh <path/to/subdomains>
-s
+
 This tool requires you to enter a command with the path to subdomains (without https://). After the scan is done, the user can choose between displaying only IPs of subdomains or not (default will display subdomain name and IP).if yes, The host command scans subdomains and gets IPs,saves in a file and then Nmap scans IPs for live domains.
 if no, subdomain name and ip is displayed and nmap scan cannot be possible if file is saved.
 ---------------------------------------------------------------------
