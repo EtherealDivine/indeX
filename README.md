@@ -10,6 +10,7 @@ This tool requires you to manually acquire your preferred ASN and fill in the in
 
 * my nmap scan took a long time so i used an asn that has only one ip range. but i'd like to see the results for an asn that has lots of IP ranges
 -------------------------------------------------------------------
+####Process
 * User Input (ASN)
 * whois/radb (ASN Info)
 * IP Ranges Extraction
@@ -24,6 +25,7 @@ This tool requires you to manually acquire your preferred ASN and fill in the in
 
    This tool requires you to enter a command with the path to subdomains (without https://). After the scan is complete, you can choose whether to display only the IPs of subdomains or not. By default, the tool displays both the subdomain name and IP. If you choose to display only the IPs, the host command scans the subdomains and saves the IPs in a file. Then, Nmap scans the IPs for live domains. If you choose not to display only the IPs, the tool displays both the subdomain name and IP. However, if you save the file, Nmap scan cannot be performed.
 ---------------------------------------------------------------------
+####Process
 * User inputs command with path to subdomains.
 * Host command scans subdomains and gets IPs.
 * File is saved with a preferred file name.
