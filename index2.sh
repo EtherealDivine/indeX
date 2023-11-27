@@ -25,13 +25,11 @@ if [ -z "$input_file" ]; then
     exit 1
 fi
 
-# Check if the file exists
 if [ ! -f "$input_file" ]; then
     echo "File not found: $input_file"
     exit 1
 fi
 
-# Ask the user whether to display only IPs or default "Domain: IP"
 read -p "$(echo -e ${RED}${WHITE}"Do you want to display only IPs? (y/n)[Default displays domain_name&IP]: "${NC}) " display_ips
 echo -e "${GREEN}===================================================${NC}"
 
@@ -50,23 +48,19 @@ while IFS= read -r domain; do
             else
                 echo "Domain: $domain, IP: $ip"
             fi
-
-            # You can perform further actions with the IP address here
         fi
     fi
 done < "$input_file"
 
-# Ask the user whether to save results to a file
 echo -e "${GREEN}===================================================${NC}"
 read -p "$(echo -e ${RED}${WHITE}"Do you want to save the results to a file? (y/n): "${NC}) " save_to_file
 
-# If saving to a file, prompt for the file name
 if [ "$save_to_file" = "y" ]; then
     read -p "$(echo -e ${RED}${WHITE}"Enter the file name to save results: "${NC}) " output_file
 
-    # Loop through each line in the file again to save results to the specified file
+   
     while IFS= read -r domain; do
-        # Check if domain is empty
+    
         if [ -n "$domain" ]; then
             ip=$(host "$domain" | awk '/has address/ {print $4}')
             if [ -n "$ip" ]; then
@@ -82,15 +76,12 @@ if [ "$save_to_file" = "y" ]; then
     echo -e "${GREEN}${WHITE}Your file '$output_file' has been saved.${NC}"
     echo -e "${GREEN}===================================================${NC}"
 
-    # Check if the user chose to display only IPs before prompting for an nmap scan
     if [ "$display_ips" = "n" ]; then
         exit 0
     fi
-
-    # Ask the user whether to perform an nmap scan
+  
     read -p "$(echo -e ${RED}${WHITE}"Do you want to perform an nmap scan? (y/n): "${NC}) " perform_nmap
 
-    # If the user chooses to perform an nmap scan, execute the command
     if [ "$perform_nmap" = "y" ]; then
        nmap -sS --script=http-title --top-ports 100 -T4 -Pn -iL "$output_file"
     fi
