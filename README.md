@@ -6,7 +6,7 @@ This is a composition of two tools. `indeX1` & `indeX2`
 ### How it works
 * usage : `bash index1.sh`
 
-This tool requires you to manually acquire your preferred ASN and fill in the inputs. The tool then extracts IP ranges, performs an Nmap scan on live hosts, and finally performs an Nmap scan on open ports(default is top 100 ports,but you can change it to a 1000 in the code if you want.) on live hosts. The output files are generated based on the user input. 
+This tool requires you to manually acquire your preferred ASN(https://bgp.he.net/) and fill in the inputs. The tool then extracts IP ranges, performs an Nmap scan on live hosts, and finally performs an Nmap scan on open ports(default is top 100 ports,but you can change it to a 1000 in the code if you want.) on live hosts. The output files are generated based on the user input. 
 
 * my nmap scan took a long time so i used an asn that has only one ip range. but i'd like to see the results for an asn that has lots of IP ranges
 -------------------------------------------------------------------
