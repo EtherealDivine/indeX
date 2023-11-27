@@ -20,10 +20,9 @@ This tool requires you to manually acquire your preferred ASN and fill in the in
 
 ## indeX2
 ### How it works
-* usage: bash index2.sh <path/to/subdomains>
+* usage:` bash index2.sh <path/to/subdomains>`
 
-This tool requires you to enter a command with the path to subdomains (without https://). After the scan is done, the user can choose between displaying only IPs of subdomains or not (default will display subdomain name and IP).if yes, The host command scans subdomains and gets IPs,saves in a file and then Nmap scans IPs for live domains.
-if no, subdomain name and ip is displayed and nmap scan cannot be possible if file is saved.
+   This tool requires you to enter a command with the path to subdomains (without https://). After the scan is complete, you can choose whether to display only the IPs of subdomains or not. By default, the tool displays both the subdomain name and IP. If you choose to display only the IPs, the host command scans the subdomains and saves the IPs in a file. Then, Nmap scans the IPs for live domains. If you choose not to display only the IPs, the tool displays both the subdomain name and IP. However, if you save the file, Nmap scan cannot be performed.
 ---------------------------------------------------------------------
 user inputs command with path to subdomains 
                     |
