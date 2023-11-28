@@ -18,6 +18,7 @@ echo -e "${GREEN}===================================================${NC}"
 read -p "$(echo -e ${RED}${WHITE}"Enter the filename to save the IP ranges in: "${NC}) " output_file
 read -p "$(echo -e ${RED}${WHITE}"Enter the filename to save the live_hosts: "${NC}) " live_hosts_file
 read -p "$(echo -e ${RED}${WHITE}"Enter the filename to save the NMAP output: "${NC}) " final_results_file
+read -p "$(echo -e ${RED}${WHITE}"Do you want to scan for vulnerabilities? (y/n): "${NC}) " scan_vulnerabilities
 echo -e "${GREEN}===================================================${NC}"
 
 # whois command to extract IP ranges
@@ -29,12 +30,17 @@ if [ -n "$whois_output" ]; then
     echo -e "${GREEN}============================${NC}"
     echo -e "${GREEN}Nmap Scan Might Take A While. Take a break.${NC}\n"
 
-    #Scan for live ranges/host  
+    # Scan for live ranges/host  
     nmap -sn -iL "$output_file" | grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' >> "$live_hosts_file"
+   
 
-    # scan live ranges/host for open ports.
-    nmap -sS --script=http-title --top-ports 100 -T4 -Pn -iL "$live_hosts_file" -oN "$final_results_file"
-    echo -e "${GREEN}Final Nmap scan completed. Results saved to $final_results_file${NC}"
+    if [ "$scan_vulnerabilities" == "y" ]; then
+        nmap --script vuln -sS -sV --top-ports 100 -T4 -Pn -iL "$live_hosts_file" -oN "$final_results_file"
+        echo -e "${GREEN}Vulnerability scan completed. Results saved to $final_results_file${NC}"
+    else
+        nmap -sS -sV --top-ports 100 -T4 -Pn -iL "$live_hosts_file" -oN "$final_results_file"
+        echo -e "${GREEN}Nmap scan completed. Results saved to $final_results_file${NC}"
+    fi
 
 else
     echo -e "${RED}No IP ranges found for ASN $asn :(${NC}"
