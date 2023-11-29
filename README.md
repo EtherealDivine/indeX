@@ -30,3 +30,8 @@ This tool requires you to manually acquire your preferred ASN (https://bgp.he.ne
 * Host command scans subdomains and gets IPs.
 * File is saved with a preferred file name.
 * Nmap scans IPs for open ports (top 100 ports but can be changed to 1000).
+  -------------------------------------------------------------------
+
+**DISCLAIMER**
+
+This tool is meant for Ethetical use only. I do not condone the use of this tool in any unethetical form what so ever. What every you use the tool for, you use at your own risk.
