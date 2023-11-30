@@ -35,14 +35,10 @@ echo -e "${GREEN}===================================================${NC}"
 
 # Loop through each line in the file
 while IFS= read -r domain; do
-    # Check if domain is empty
+    
     if [ -n "$domain" ]; then
-        # Use host command and awk to get the IP address
         ip=$(host "$domain" | awk '/has address/ {print $4}')
-
-        # Check if IP is empty
         if [ -n "$ip" ]; then
-            # Display the result based on user choice
             if [ "$display_ips" = "y" ]; then
                 echo "$ip"
             else
@@ -50,7 +46,7 @@ while IFS= read -r domain; do
             fi
         fi
     fi
-done < "$input_file"
+done < "$input_file" | sort -u >> "$output_file"
 
 echo -e "${GREEN}===================================================${NC}"
 read -p "$(echo -e ${RED}${WHITE}"Do you want to save the results to a file? (y/n): "${NC}) " save_to_file
