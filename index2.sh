@@ -79,7 +79,7 @@ if [ "$save_to_file" = "y" ]; then
     read -p "$(echo -e ${RED}${WHITE}"Do you want to perform an nmap scan? (y/n): "${NC}) " perform_nmap
 
     if [ "$perform_nmap" = "y" ]; then
-       nmap -sS --script=http-title --top-ports 100 -T4 -Pn -iL "$output_file"
+       nmap -sV -sX --script=vuln --top-ports 100 -T4 -Pn -iL "$output_file"
     fi
 fi
 
