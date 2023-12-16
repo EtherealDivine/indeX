@@ -84,6 +84,6 @@ done < "$input_file" | sort -u >> "$output_file"
     read -p "$(echo -e ${RED}${WHITE}"Do you want to perform an nmap scan? (y/n): "${NC}) " perform_nmap
 
     if [ "$perform_nmap" = "y" ]; then
-       nmap -sX -sV --script=vuln --top-ports 100 -T4 -Pn -iL "$output_file"
+       nmap --script=http-title --script vuln -sS -sV --top-ports 1000 -T4 -Pn -iL "$output_file"
     fi
 fi
