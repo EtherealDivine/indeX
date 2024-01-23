@@ -35,10 +35,10 @@ if [ -n "$whois_output" ]; then
    
 
     if [ "$scan_vulnerabilities" == "y" ]; then
-        nmap --script=http-title --script vuln -sS -sV --top-ports 1000 -T4 -Pn -iL "$live_hosts_file" -oN "$final_results_file"
+        nmap --script vuln -iL "$live_hosts_file" -sV --top-ports 3000 -T4 -Pn  -oN "$final_results_file"
         echo -e "${GREEN}Vulnerability scan completed. Results saved to $final_results_file${NC}"
     else
-        nmap -sS -sV --top-ports 100 -T4 -Pn -iL "$live_hosts_file" -oN "$final_results_file"
+        nmap -sV --top-ports 3000 -T4 -Pn -iL "$live_hosts_file" -oN "$final_results_file"
         echo -e "${GREEN}Nmap scan completed. Results saved to $final_results_file${NC}"
     fi
 
